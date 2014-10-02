@@ -7,5 +7,6 @@
 	   RemoteObjectRef ror
 	   String methodName
 	   Object[] args 
+	   Obejct result
 	   
 	   

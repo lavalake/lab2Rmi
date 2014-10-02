@@ -1,20 +1,32 @@
-/*  Communication Module responsible for sending the RMIMessage 
+/*  Communication Module responsible for sending the RMIMessage and receiving the RMIMessage
  *  Author by Yifan Li
  *  Date: 10/1/2014
  */
 package comm;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class CommModule_Client{
     private String ipAdr;
     private int port;
+    private Socket socket;
     
     public CommModule_Client(String ip,int port){
     	this.setIpAdr(ip);
     	this.setPort(port);
+    	try {
+			this.socket = new Socket(this.ipAdr,this.port);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 	public String getIpAdr() {
@@ -38,11 +50,10 @@ public class CommModule_Client{
 	 * 
 	 */
 	
-	public boolean send_msg(RMIMessage msg){
+	public boolean sendMsg(RMIMessage msg){
 		
 		try {
-			Socket socket = new Socket(this.ipAdr,this.port);
-			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+			ObjectOutputStream oos = new ObjectOutputStream(this.socket.getOutputStream());
 			oos.writeObject(msg);
 			oos.close();
 		} catch (IOException e) {
@@ -53,4 +64,24 @@ public class CommModule_Client{
 		return true;
 	}
 	
+	/*
+	 * method to receive the response msg 
+	 */
+	public RMIMessage receiveMsg(){
+		
+		ObjectInputStream ois;
+		RMIMessage response = null;
+		try {
+			ois = new ObjectInputStream(this.socket.getInputStream());
+			response = (RMIMessage)ois.readObject();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		return response;
+	}
 }

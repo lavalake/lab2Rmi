@@ -27,7 +27,7 @@ public class RMIMessage implements Serializable{
 	private RemoteObjectRef ror;
 	private String methodName;
 	private Object[] args;
-	
+	private Object result;
 	public msgType getType() {
 		return type;
 	}
@@ -51,6 +51,12 @@ public class RMIMessage implements Serializable{
 	}
 	public void setArgs(Object[] args) {
 		this.args = args;
+	}
+	public Object getResult() {
+		return result;
+	}
+	public void setResult(Object result) {
+		this.result = result;
 	}
 	
 	
