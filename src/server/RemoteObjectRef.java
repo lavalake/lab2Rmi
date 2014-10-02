@@ -40,6 +40,7 @@ public class RemoteObjectRef
         Class stub = Class.forName(Remote_Object_Name+"_stub");
         try {
             Object stubObject = stub.newInstance();
+            ((stubInterface) stubObject).setRor(this);
             return stubObject;
         } catch (InstantiationException | IllegalAccessException e) {
             // TODO Auto-generated catch block

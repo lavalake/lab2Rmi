@@ -1,8 +1,11 @@
 package server;
+import comm.CommModule_Client;
+import comm.RMIMessage;
+import comm.RMIMessage.msgType;
 import example.ZipCodeList;
 import example.ZipCodeServer;
 
-public class ZipCodeServerStub implements  ZipCodeServer{
+public class ZipCodeServerStub implements  ZipCodeServer, stubInterface{
 
     RemoteObjectRef ror;
     @Override
@@ -45,6 +48,14 @@ public class ZipCodeServerStub implements  ZipCodeServer{
     }
     
     private Object invoke(String command, Object[] argv){
+        RMIMessage message = new RMIMessage();
+        message.setType(msgType.INVOKE);
+        message.setMethodName(command);
+        message.setArgs(argv);
+        
+        CommModule_Client comm = new CommModule_Client(ror.IP_adr, ror.Port);
+        
+        comm.send_msg(message);
         return null;
     }
     
