@@ -1,9 +1,10 @@
 package server;
 public class RemoteObjectRef
 {
-    String IP_adr;
-    int Port;
-    int Obj_Key;
+    public static final String Remote_Interface_Name = null;
+    public String IP_adr;
+    public int Port;
+    public int Obj_Key;
     String Remote_Object_Name;
 
     public RemoteObjectRef(String ip, int port, int obj_key, String riname) 
@@ -16,7 +17,7 @@ public class RemoteObjectRef
 
     // this method is important, since it is a stub creator.
     // 
-    Object localise()
+    public Object localise()
     {
 	// Implement this as you like: essentially you should 
 	// create a new stub object and returns it.
@@ -47,6 +48,7 @@ public class RemoteObjectRef
     }catch (ClassNotFoundException e) {
         
     }
+    return null;
 	
     }
     

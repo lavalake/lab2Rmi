@@ -1,3 +1,4 @@
+package example;
 import java.io.*;
 
 // in implementation, you do not have to extend this as in Java RMI. 

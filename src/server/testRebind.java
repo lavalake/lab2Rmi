@@ -1,4 +1,7 @@
+package server;
 import java.io.*;
+
+import client.LocateSimpleRegistry;
 
 // we test simple registry by binding a service to ROR.
 

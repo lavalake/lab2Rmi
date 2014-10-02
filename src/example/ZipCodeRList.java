@@ -1,3 +1,4 @@
+package example;
 public interface ZipCodeRList // extends YourRemote or whatever
 {
     public String find(String city);

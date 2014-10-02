@@ -1,4 +1,10 @@
+package client;
+
+
 import java.io.*;
+
+import server.RemoteObjectRef;
+import server.SimpleRegistry;
 
 // we test simple registry by looking up a service.
 

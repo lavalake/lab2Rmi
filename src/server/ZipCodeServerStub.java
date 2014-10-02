@@ -1,3 +1,4 @@
+package server;
 import example.ZipCodeList;
 import example.ZipCodeServer;
 
