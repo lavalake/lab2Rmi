@@ -11,4 +11,10 @@ public class ZipCodeList
 	ZipCode=z;
 	next=n;
     }
+    public void print(){
+        System.out.println("city "+city+" ZipCode "+ZipCode);
+    }
+    public ZipCodeList getNext(){
+        return next;
+    }
 }
