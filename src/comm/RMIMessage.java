@@ -11,6 +11,10 @@ import java.io.Serializable;
 import server.RemoteObjectRef;
 
 public class RMIMessage implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public enum msgType{
 		INVOKE,
 		REGISTRY,
@@ -20,9 +24,34 @@ public class RMIMessage implements Serializable{
 	}
 	
 	private msgType type;
-	RemoteObjectRef ror;
-	String methodName;
-	Object[] args;
+	private RemoteObjectRef ror;
+	private String methodName;
+	private Object[] args;
+	
+	public msgType getType() {
+		return type;
+	}
+	public void setType(msgType type) {
+		this.type = type;
+	}
+	public RemoteObjectRef getRor() {
+		return ror;
+	}
+	public void setRor(RemoteObjectRef ror) {
+		this.ror = ror;
+	}
+	public String getMethodName() {
+		return methodName;
+	}
+	public void setMethodName(String methodName) {
+		this.methodName = methodName;
+	}
+	public Object[] getArgs() {
+		return args;
+	}
+	public void setArgs(Object[] args) {
+		this.args = args;
+	}
 	
 	
 }

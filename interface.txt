@@ -1,7 +1,11 @@
 1. RMIMessage:
-       enum{'invoke','registry','lookup','response'} Type
+       enum{INVOKE,
+		REGISTRY,
+		LOOKUP,
+		RESPONSE,
+		EXCEPTION} type
 	   RemoteObjectRef ror
-	   String MethodName
-	   Object[] arg 
+	   String methodName
+	   Object[] args 
 	   
 	   
