@@ -8,5 +8,6 @@
 	   String methodName
 	   Object[] args 
 	   Obejct result
+	   String exceptionCause
 	   
 	   

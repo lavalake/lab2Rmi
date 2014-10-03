@@ -28,6 +28,7 @@ public class RMIMessage implements Serializable{
 	private String methodName;
 	private Object[] args;
 	private Object result;
+	private String exceptionCause;
 	public msgType getType() {
 		return type;
 	}
@@ -57,6 +58,12 @@ public class RMIMessage implements Serializable{
 	}
 	public void setResult(Object result) {
 		this.result = result;
+	}
+	public String getExceptionCause() {
+		return exceptionCause;
+	}
+	public void setExceptionCause(String exceptionCause) {
+		this.exceptionCause = exceptionCause;
 	}
 	
 	
