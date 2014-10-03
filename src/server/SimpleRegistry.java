@@ -60,8 +60,6 @@ public class SimpleRegistry
 	    throw(new RemoteException(rsp.getExceptionCause()));
 	}
 	
-
-	
 	return ror;
     }
 
