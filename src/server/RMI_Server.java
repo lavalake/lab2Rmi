@@ -9,6 +9,7 @@ package server;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -19,7 +20,10 @@ import java.net.UnknownHostException;
 
 
 
+
+
 import comm.RMIMessage;
+import comm.RMIMessage.msgType;
 import client.LocateSimpleRegistry;
 import utility.OBTable;
 
@@ -138,19 +142,87 @@ public class RMI_Server {
 				}
 				
 				//invoke the method
+				Object returnValue = m.invoke(obtbl.getObject(key), args);
+				
+				//create the response
+				RMIMessage response = new RMIMessage();
+				
+				//marshall the response
+				response.setType(msgType.RESPONSE);
+				response.setResult(returnValue);
+				
+				//send the response
+				this.oos.writeObject(response);
 				
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//create the response
+				RMIMessage response = new RMIMessage();
+				
+				//marshall the response
+				response.setType(msgType.EXCEPTION);
+				response.setExceptionCause("ClassNotFoundException!");
+				
+				//send the response
+				try {
+					this.oos.writeObject(response);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//create the response
+				RMIMessage response = new RMIMessage();
+				
+				//marshall the response
+				response.setType(msgType.EXCEPTION);
+				response.setExceptionCause("No Such Method!");
+				
+				//send the response
+				try {
+					this.oos.writeObject(response);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}			
 			} catch (SecurityException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				//create the response
+				RMIMessage response = new RMIMessage();
+				
+				//marshall the response
+				response.setType(msgType.EXCEPTION);
+				response.setExceptionCause("Illegal Arguments Exception!");
+				
+				//send the response
+				try {
+					this.oos.writeObject(response);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			} catch (InvocationTargetException e) {
+				//create the response
+				RMIMessage response = new RMIMessage();
+				
+				//marshall the response
+				response.setType(msgType.EXCEPTION);
+				response.setExceptionCause("InvocationTargetException!");
+				
+				//send the response
+				try {
+					this.oos.writeObject(response);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		}
