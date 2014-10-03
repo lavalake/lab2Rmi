@@ -1,4 +1,5 @@
 package server;
+import utility.RemoteException;
 import comm.CommModule_Client;
 import comm.RMIMessage;
 import comm.RMIMessage.msgType;
@@ -13,32 +14,52 @@ public class ZipCodeServerStub implements  ZipCodeServer, stubInterface{
         // TODO Auto-generated method stub
         Object ret;
         Object[] argv = {newlist};
-        invoke("initialize", argv);
+        try {
+            invoke("initialize", argv);
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
     }
 
     @Override
     public String find(String city) {
         // TODO Auto-generated method stub
-        String ret;
+        String ret = null;
         Object[] argv = {city};
-        ret = (String)invoke("find", argv);
+        try {
+            ret = (String)invoke("find", argv);
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return ret;
     }
 
     @Override
     public ZipCodeList findAll() {
         // TODO Auto-generated method stub
-        ZipCodeList ret;
-        ret = (ZipCodeList)invoke("findAll",null);
+        ZipCodeList ret = null;
+        try {
+            ret = (ZipCodeList)invoke("findAll",null);
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return ret;
     }
 
     @Override
     public void printAll() {
         // TODO Auto-generated method stub
-        ZipCodeList ret;
-        ret = (ZipCodeList)invoke("printAll",null);
+        ZipCodeList ret = null;
+        try {
+            ret = (ZipCodeList)invoke("printAll",null);
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         while(ret != null){
             ret.print();
             ret = ret.getNext();
@@ -47,15 +68,25 @@ public class ZipCodeServerStub implements  ZipCodeServer, stubInterface{
         
     }
     
-    private Object invoke(String command, Object[] argv){
-        RMIMessage message = new RMIMessage();
-        message.setType(msgType.INVOKE);
-        message.setMethodName(command);
-        message.setArgs(argv);
+    private Object invoke(String command, Object[] argv) throws RemoteException{
+        RMIMessage ivkMessage = new RMIMessage();
+        ivkMessage.setType(msgType.INVOKE);
+        ivkMessage.setMethodName(command);
+        ivkMessage.setArgs(argv);
         
         CommModule_Client comm = new CommModule_Client(ror.IP_adr, ror.Port);
         
-        comm.send_msg(message);
+        comm.sendMsg(ivkMessage);
+        
+        RMIMessage rplMessage = new RMIMessage();
+        
+        rplMessage = comm.receiveMsg();
+        if(rplMessage.getType() == msgType.RESPONSE){
+            return rplMessage.getResult();
+        }
+        else if(rplMessage.getType() == msgType.EXCEPTION){
+            throw(new RemoteException(rplMessage.getExceptionCause()));
+        }
         return null;
     }
     
