@@ -3,6 +3,11 @@ import java.util.*;
 import java.net.*;
 import java.io.*;
 
+import utility.RemoteException;
+import comm.CommModule_Client;
+import comm.RMIMessage;
+import comm.RMIMessage.msgType;
+
 public class SimpleRegistry 
 { 
     // registry holds its port and host, and connects to it each time. 
@@ -18,7 +23,7 @@ public class SimpleRegistry
 
     // returns the ROR (if found) or null (if else)
     public RemoteObjectRef lookup(String serviceName) 
-	throws IOException
+	throws IOException, RemoteException
     {
 	// open socket.
 	// it assumes registry is already located by locate registry.
@@ -36,82 +41,53 @@ public class SimpleRegistry
 	System.out.println("stream made.");
 
 	// it is locate request, with a service name.
-	out.println("lookup");
-	out.println(serviceName);
+	CommModule_Client comm = new CommModule_Client(Host,Port);
+	RMIMessage lookupMsg = new RMIMessage();
+	lookupMsg.setType(msgType.LOOKUP);
+	lookupMsg.setServiceName(serviceName);
+	
+	comm.sendMsg(lookupMsg);
 
 	System.out.println("command and service name sent.");
 
 	// branch according to the answer.
-	String res = in.readLine();
-	RemoteObjectRef ror;
+	RMIMessage rsp = comm.receiveMsg();
+	RemoteObjectRef ror = null;
+	if(rsp.getType() == msgType.RESPONSE){
+	    ror = rsp.getRor();
+	}
+	else if(rsp.getType() == msgType.EXCEPTION){
+	    throw(new RemoteException(rsp.getExceptionCause()));
+	}
+	
 
-	if (res.equals("found"))
-	    {
-
-		System.out.println("it is found!.");
-
-		// receive ROR data, witout check.
-		String ro_IPAdr = in.readLine();
-
-		System.out.println(ro_IPAdr);
-
-		int ro_PortNum = Integer.parseInt(in.readLine());
-
-		System.out.println(ro_PortNum);
-
-		int ro_ObjKey = Integer.parseInt(in.readLine());
-
-		System.out.println(ro_ObjKey);
-
-		String ro_InterfaceName = in.readLine();
-
-		System.out.println(ro_InterfaceName);
-
-		
-		// make ROR.
-		ror = new RemoteObjectRef(ro_IPAdr, ro_PortNum, ro_ObjKey, ro_InterfaceName);
-	    }
-	else		
-	    {
-		System.out.println("it is not found!.");
-
-		ror = null;
-	    }
-
-	// close the socket.
-	soc.close();
-		
-	// return ROR.
+	
 	return ror;
     }
 
     // rebind a ROR. ROR can be null. again no check, on this or whatever. 
     // I hate this but have no time.
     public void rebind(String serviceName, RemoteObjectRef ror) 
-	throws IOException
+	throws IOException, RemoteException
     {
-	// open socket. same as before.
-	Socket soc = new Socket(Host, Port);
-	    
-	// get TCP streams and wrap them. 
-	BufferedReader in = 
-	    new BufferedReader(new InputStreamReader (soc.getInputStream()));
-	PrintWriter out = 
-	    new PrintWriter(soc.getOutputStream(), true);
+        CommModule_Client comm = new CommModule_Client(Host,Port);
+        RMIMessage registryMsg = new RMIMessage();
+        registryMsg.setType(msgType.REGISTRY);
+        registryMsg.setRor(ror);
+        
+        comm.sendMsg(registryMsg);
 
-	// it is a rebind request, with a service name and ROR.
-	out.println("rebind");
-	out.println(serviceName);
-	out.println(ror.IP_adr);
-	out.println(ror.Port); 
-	out.println(ror.Obj_Key);
-	out.println(ror.Remote_Interface_Name);
+        System.out.println("command and service name sent.");
 
-	// it also gets an ack, but this is not used.
-	String ack = in.readLine();
-
-	// close the socket.
-	soc.close();
+        // branch according to the answer.
+        RMIMessage rsp = comm.receiveMsg();
+        
+        if(rsp.getType() == msgType.RESPONSE){
+            System.out.println("register suceed\n");
+        }
+        else if(rsp.getType() == msgType.EXCEPTION){
+            throw(new RemoteException(rsp.getExceptionCause()));
+        }
     }
 } 
   

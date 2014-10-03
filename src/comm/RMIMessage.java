@@ -30,6 +30,14 @@ public class RMIMessage implements Serializable{
 	private Class<?> argsType;
 	private Object result;
 	private String exceptionCause;
+	private String serviceName;
+	
+	public void setServiceName(String service){
+	    serviceName = service;
+	}
+	public String getServiceName(){
+	    return serviceName;
+	}
 	public msgType getType() {
 		return type;
 	}

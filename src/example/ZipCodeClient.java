@@ -16,6 +16,7 @@ import java.io.*;
 import client.LocateSimpleRegistry;
 import server.RemoteObjectRef;
 import server.SimpleRegistry;
+import utility.RemoteException;
 
 public class ZipCodeClient { 
 
@@ -30,12 +31,24 @@ public class ZipCodeClient {
 	String host = args[0];
 	int port = Integer.parseInt(args[1]);
 	String serviceName = args[2];
-	BufferedReader in = new BufferedReader(new FileReader(args[3]));
+	BufferedReader in = null;
+	try{
+	    in = new BufferedReader(new FileReader(args[3]));
+	}catch(FileNotFoundException e){
+	    e.printStackTrace();
+	    
+	}
 
 	// locate the registry and get ror.
 	SimpleRegistry sr = 
 	    LocateSimpleRegistry.getRegistry(host, port);
-	RemoteObjectRef ror = sr.lookup(serviceName);
+	RemoteObjectRef ror = null;
+    try {
+        ror = sr.lookup(serviceName);
+    } catch (RemoteException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
 
 	// get (create) the stub out of ror.
  	ZipCodeServer zcs = (ZipCodeServer) ror.localise();

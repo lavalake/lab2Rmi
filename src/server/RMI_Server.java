@@ -22,10 +22,12 @@ import java.net.UnknownHostException;
 
 
 
+
 import comm.RMIMessage;
 import comm.RMIMessage.msgType;
 import client.LocateSimpleRegistry;
 import utility.OBTable;
+import utility.RemoteException;
 
 public class RMI_Server {
 	static String host;
@@ -68,7 +70,12 @@ public class RMI_Server {
 			SimpleRegistry sr = LocateSimpleRegistry.getRegistry(registryHost, registryPort);
 		
 			if(sr != null){
-				sr.rebind(initialClassName,ror);			
+				try {
+                    sr.rebind(initialClassName,ror);
+                } catch (RemoteException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }			
 			}
 
 			//create the socket

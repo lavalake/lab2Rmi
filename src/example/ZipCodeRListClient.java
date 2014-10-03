@@ -16,6 +16,7 @@ import java.io.*;
 import client.LocateSimpleRegistry;
 import server.RemoteObjectRef;
 import server.SimpleRegistry;
+import utility.RemoteException;
 
 public class ZipCodeRListClient { 
 
@@ -35,7 +36,13 @@ public class ZipCodeRListClient {
 	// locate the registry and get ror.
 	SimpleRegistry sr = 
 	    LocateSimpleRegistry.getRegistry(host, port);
-	RemoteObjectRef ror = sr.lookup(serviceName);
+	RemoteObjectRef ror = null;
+    try {
+        ror = sr.lookup(serviceName);
+    } catch (RemoteException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
 
 	// get (create) the stub out of ror.
  	ZipCodeRList rl = (ZipCodeRList) ror.localise();
