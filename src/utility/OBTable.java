@@ -7,15 +7,24 @@ import java.util.HashMap;
 
 public class OBTable {
 	private HashMap<Integer,Object> obtbl;
-	private int coutner ;
+	private int counter ;
 	
 	public OBTable(){
 		this.obtbl = new HashMap<Integer,Object>();
-		this.coutner = 0;
+		this.counter = 0;
 	}
 	
-	public void add_obj(Object obj){
-		
-		obtbl.put(,obj);
+	public int add_obj(Object obj){
+		if(obj != null){
+		counter++;
+		obtbl.put(counter,obj);
+		}else{
+			System.out.println("Null obj");
+		}
+		return counter;
+	}
+	
+	public Object getObject(int key){
+		return this.obtbl.get(key);
 	}
 }

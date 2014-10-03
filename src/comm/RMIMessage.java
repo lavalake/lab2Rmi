@@ -27,6 +27,7 @@ public class RMIMessage implements Serializable{
 	private RemoteObjectRef ror;
 	private String methodName;
 	private Object[] args;
+	private Class<?> argsType;
 	private Object result;
 	private String exceptionCause;
 	public msgType getType() {
@@ -64,6 +65,12 @@ public class RMIMessage implements Serializable{
 	}
 	public void setExceptionCause(String exceptionCause) {
 		this.exceptionCause = exceptionCause;
+	}
+	public Class<?> getArgsType() {
+		return argsType;
+	}
+	public void setArgsType(Class<?> argsType) {
+		this.argsType = argsType;
 	}
 	
 	
