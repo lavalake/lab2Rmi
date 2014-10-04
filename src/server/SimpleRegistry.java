@@ -25,20 +25,6 @@ public class SimpleRegistry
     public RemoteObjectRef lookup(String serviceName) 
 	throws IOException, RemoteException
     {
-	// open socket.
-	// it assumes registry is already located by locate registry.
-	// you should usually do try-catch here (and later).
-	Socket soc = new Socket(Host, Port);
-
-	System.out.println("socket made.");
-	    
-	// get TCP streams and wrap them. 
-	BufferedReader in = 
-	    new BufferedReader(new InputStreamReader (soc.getInputStream()));
-	PrintWriter out = 
-	    new PrintWriter(soc.getOutputStream(), true);
-
-	System.out.println("stream made.");
 
 	// it is locate request, with a service name.
 	CommModule_Client comm = new CommModule_Client(Host,Port);
