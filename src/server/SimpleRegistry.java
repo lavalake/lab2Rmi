@@ -50,7 +50,7 @@ public class SimpleRegistry
 
 		System.out.println("it is found!.");
 
-		// receive ROR data, witout check.
+		// receive ROR data, without check.
 		String ro_IPAdr = in.readLine();
 
 		System.out.println(ro_IPAdr);

@@ -39,6 +39,8 @@ public class RMI_Server {
 		int registryPort = Integer.parseInt(args[1]);
 		String initialClassName = args[2];
 		
+		//creat a RMI_SERVER instantce
+		RMI_Server rs = new RMI_Server();
 		
 		try {
 			host = (InetAddress.getLocalHost()).getHostName();
@@ -80,8 +82,9 @@ public class RMI_Server {
 				Socket Client=soc.accept();
 				
 				//create a new thread to deal with the remote method invocation
-				
-				
+				dealRMIrequest deal = rs.new dealRMIrequest(Client);
+				Thread  t =new Thread(deal);
+				t.start();
 			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
