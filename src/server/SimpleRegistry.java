@@ -58,6 +58,7 @@ public class SimpleRegistry
         RMIMessage registryMsg = new RMIMessage();
         registryMsg.setType(msgType.REGISTRY);
         registryMsg.setRor(ror);
+        registryMsg.setServiceName(serviceName);
         
         comm.sendMsg(registryMsg);
 

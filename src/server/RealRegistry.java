@@ -10,6 +10,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
+import comm.RMIMessage;
+import comm.RMIMessage.msgType;
 public class RealRegistry {
 	public static void main(String [] args){
 		if(args.length != 1){
@@ -31,9 +33,37 @@ public class RealRegistry {
 				ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
 				ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
 				
+				//receive the msg
+				RMIMessage msg = (RMIMessage)ois.readObject();
+				
+				//create the response
+				RMIMessage response = new RMIMessage();
+				response.setType(msgType.RESPONSE);
+				
+				if(msg.getType() == msgType.LOOKUP){
+					//get the service name
+					String service = msg.getServiceName();
+					
+					//look up the service
+					if(serviceList.get(service) != null){
+						response.setRor(serviceList.get(service));
+						oos.writeObject(response);
+					}else{
+						response.setType(msgType.EXCEPTION);
+						response.setExceptionCause("service not found!");
+						oos.writeObject(response);
+					}
+				}else if(msg.getType() == msgType.REGISTRY){
+					//rebind the service
+					serviceList.put(msg.getServiceName(), msg.getRor());
+					oos.writeObject(response);
+				}
 			}
 			
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
