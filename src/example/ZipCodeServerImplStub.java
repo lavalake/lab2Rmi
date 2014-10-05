@@ -72,6 +72,7 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
     }
 
     @Override
+    /*will print at remote site, not locally*/
     public void printAll() {
         // TODO Auto-generated method stub
         ZipCodeList ret = null;
@@ -83,15 +84,12 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
             System.out.println("argType "+i+":"+argType[i].toString());
         }
         try {
-            ret = (ZipCodeList)invoke("printAll",null,null);
+            invoke("printAll",null,null);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        while(ret != null){
-            ret.print();
-            ret = ret.getNext();
-        }
+        
         
         
     }
