@@ -55,7 +55,7 @@ public class CommModule_Client{
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(this.socket.getOutputStream());
 			oos.writeObject(msg);
-			oos.close();
+
 		} catch (IOException e) {
 			System.out.print("object output stream failure!");
 			e.printStackTrace();

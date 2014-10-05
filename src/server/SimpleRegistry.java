@@ -25,7 +25,7 @@ public class SimpleRegistry
     public RemoteObjectRef lookup(String serviceName) 
 	throws IOException, RemoteException
     {
-
+    
 	// it is locate request, with a service name.
 	CommModule_Client comm = new CommModule_Client(Host,Port);
 	RMIMessage lookupMsg = new RMIMessage();
@@ -54,7 +54,8 @@ public class SimpleRegistry
     public void rebind(String serviceName, RemoteObjectRef ror) 
 	throws IOException, RemoteException
     {
-        CommModule_Client comm = new CommModule_Client(Host,Port);
+    	System.out.println("registry host:"+Host+" registry port:"+Port);
+    	CommModule_Client comm = new CommModule_Client(Host,Port);
         RMIMessage registryMsg = new RMIMessage();
         registryMsg.setType(msgType.REGISTRY);
         registryMsg.setRor(ror);

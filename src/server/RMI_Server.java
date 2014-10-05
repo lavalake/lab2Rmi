@@ -50,7 +50,7 @@ public class RMI_Server {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		port = 88888;
+		port = 12345;
 		
 		// create the sample object from the name
 		try {
@@ -70,7 +70,7 @@ public class RMI_Server {
 		
 			//register the service
 			SimpleRegistry sr = LocateSimpleRegistry.getRegistry(registryHost, registryPort);
-		
+			
 			if(sr != null){
 				try {
                     sr.rebind(initialClassName,ror);

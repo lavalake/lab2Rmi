@@ -58,6 +58,7 @@ public class RealRegistry {
 					serviceList.put(msg.getServiceName(), msg.getRor());
 					oos.writeObject(response);
 				}
+				client.close();
 			}
 			
 		} catch (IOException e) {
