@@ -18,8 +18,14 @@ public class ZipCodeRListImplStub
     {
         String ret = null;
         Object[] argv = {c};
+        Class<?>[] argType = new Class<?>[argv.length];
+        System.out.println("find");
+        for(int i=0;i<argv.length;i++){
+            argType[i] = argv[i].getClass();
+            System.out.println("argType "+i+":"+argType[i].toString());
+        }
         try {
-            ret = (String)invoke("find", argv);
+            ret = (String)invoke("find", argv, argType);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -27,7 +33,7 @@ public class ZipCodeRListImplStub
         return ret;
     }
 
-    private Object invoke(String command, Object[] argv) throws RemoteException {
+    private Object invoke(String command, Object[] argv, Class<?>[] argType) throws RemoteException {
         
         // TODO Auto-generated method stub
         RMIMessage ivkMessage = new RMIMessage();
@@ -46,6 +52,7 @@ public class ZipCodeRListImplStub
             return rplMessage.getResult();
         }
         else if(rplMessage.getType() == msgType.EXCEPTION){
+            System.out.println(rplMessage.getExceptionCause());
             throw(new RemoteException(rplMessage.getExceptionCause()));
         }
         return null;
@@ -56,9 +63,15 @@ public class ZipCodeRListImplStub
     public ZipCodeRList add(String c, String z)
     {
         ZipCodeRList ret = null;
-        Object[] argv = {z};
+        Object[] argv = {c,z};
+        Class<?>[] argType = new Class<?>[argv.length];
+        System.out.println("add");
+        for(int i=0;i<argv.length;i++){
+            argType[i] = argv[i].getClass();
+            System.out.println("argType "+i+":"+argType[i].toString());
+        }
         try {
-            ret = (ZipCodeRList)invoke("add", argv);
+            ret = (ZipCodeRList)invoke("add", argv, argType);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -72,8 +85,10 @@ public class ZipCodeRListImplStub
     {
         ZipCodeRList ret = null;
         
+        System.out.println("next");
+        
         try {
-            ret = (ZipCodeRList)invoke("next", null);
+            ret = (ZipCodeRList)invoke("next", null,null);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
