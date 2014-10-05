@@ -17,6 +17,7 @@ public class ZipCodeServerImpl
     implements ZipCodeServer
 {
     ZipCodeList l;
+    RemoteObjectRef ror;
 	
     // this is a constructor.
     public ZipCodeServerImpl()
@@ -70,12 +71,12 @@ public class ZipCodeServerImpl
     @Override
     public void setRor(RemoteObjectRef ref) {
         // TODO Auto-generated method stub
-        
+        ror = ref;
     }
 
     @Override
     public RemoteObjectRef getRor() {
         // TODO Auto-generated method stub
-        return null;
+        return ror;
     }
 }

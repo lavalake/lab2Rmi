@@ -8,6 +8,7 @@ public class ZipCodeRListImpl
     String city;
     String zipcode;
     ZipCodeRList next;
+    RemoteObjectRef ror;
 
     // this constructor creates the terminal of the list.
     // it is assumed this is called at the outset.
@@ -46,6 +47,18 @@ public class ZipCodeRListImpl
     public ZipCodeRList next()
     {
 	return next;
+    }
+
+    @Override
+    public void setRor(RemoteObjectRef ref) {
+        // TODO Auto-generated method stub
+        ror = ref;
+    }
+
+    @Override
+    public RemoteObjectRef getRor() {
+        // TODO Auto-generated method stub
+        return ror;
     }
 
  
