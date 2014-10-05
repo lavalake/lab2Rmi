@@ -23,7 +23,7 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
             System.out.println("argType "+i+":"+argType[i].toString());
         }
         try {
-            invoke("initialize", argv, argType);
+            invoke("initialise", argv, argType);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

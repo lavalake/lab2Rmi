@@ -139,20 +139,22 @@ public class RMI_Server {
 				
 				System.out.println(msg);
 				System.out.println(msg.getRor());
-				System.out.println(msg.getServiceName());
+				System.out.println(msg.getMethodName()+'\n');
+				
 				//un-marshall the message 
 				int key = msg.getRor().Obj_Key;
 				String methodName = msg.getMethodName();
 				Object [] args = msg.getArgs();
 				Class<?>[] argsType = null;
-				if(args.length !=0){
+				if(args != null){
 					argsType = msg.getArgsType();
 				}
+				
 				//get the method
 				Method m;
-				if(args.length == 1){
+				if(args == null){
 					 m = obtbl.getObject(key).getClass().getMethod(methodName);
-				}else{
+				} else{
 					m = obtbl.getObject(key).getClass().getMethod(methodName, argsType);
 				}
 				
