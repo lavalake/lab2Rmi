@@ -4,7 +4,6 @@ import comm.CommModule_Client;
 import comm.RMIMessage;
 import comm.RMIMessage.msgType;
 import server.RemoteObjectRef;
-import server.stubInterface;
 import utility.RemoteException;
 import example.ZipCodeRList;
 
@@ -103,6 +102,13 @@ public class ZipCodeRListImplStub
         // TODO Auto-generated method stub
         ror = ref;
     }
+
+    @Override
+    public RemoteObjectRef getRor() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     
 }
 
