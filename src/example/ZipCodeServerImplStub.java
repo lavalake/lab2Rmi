@@ -17,8 +17,10 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
         Object ret;
         Object[] argv = {newlist};
         Class<?>[] argType = new Class<?>[argv.length];
+        System.out.println("initialise");
         for(int i=0;i<argv.length;i++){
             argType[i] = argv[i].getClass();
+            System.out.println("argType "+i+":"+argType[i].toString());
         }
         try {
             invoke("initialize", argv, argType);
@@ -35,8 +37,10 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
         String ret = null;
         Object[] argv = {city};
         Class<?>[] argType = new Class<?>[argv.length];
+        System.out.println("find");
         for(int i=0;i<argv.length;i++){
             argType[i] = argv[i].getClass();
+            System.out.println("argType "+i+":"+argType[i].toString());
         }
         try {
             ret = (String)invoke("find", argv, argType);
@@ -52,8 +56,14 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
         // TODO Auto-generated method stub
         ZipCodeList ret = null;
         Object[] argv = {};
+        Class<?>[] argType = new Class<?>[argv.length];
+        System.out.println("findall");
+        for(int i=0;i<argv.length;i++){
+            argType[i] = argv[i].getClass();
+            System.out.println("argType "+i+":"+argType[i].toString());
+        }
         try {
-            ret = (ZipCodeList)invoke("findAll",argv,null);
+            ret = (ZipCodeList)invoke("findAll",null,null);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -66,8 +76,14 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
         // TODO Auto-generated method stub
         ZipCodeList ret = null;
         Object[] argv = {};
+        Class<?>[] argType = new Class<?>[argv.length];
+        System.out.println("printall");
+        for(int i=0;i<argv.length;i++){
+            argType[i] = argv[i].getClass();
+            System.out.println("argType "+i+":"+argType[i].toString());
+        }
         try {
-            ret = (ZipCodeList)invoke("printAll",argv,null);
+            ret = (ZipCodeList)invoke("printAll",null,null);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -99,6 +115,7 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
             return rplMessage.getResult();
         }
         else if(rplMessage.getType() == msgType.EXCEPTION){
+            System.out.println("exception:"+rplMessage.getExceptionCause());
             throw(new RemoteException(rplMessage.getExceptionCause()));
         }
         return null;
