@@ -44,7 +44,7 @@ public class RemoteObjectRef implements Serializable
 	// another place. 
 	// Here let it return null.
     try{
-        Class stub = Class.forName(Remote_Object_Name+"_stub");
+        Class<?> stub = Class.forName(Remote_Object_Name+"Stub");
         try {
             Object stubObject = stub.newInstance();
             ((stubInterface) stubObject).setRor(this);
@@ -54,10 +54,10 @@ public class RemoteObjectRef implements Serializable
             e.printStackTrace();
         }
     }catch (ClassNotFoundException e) {
-        
+        e.printStackTrace();
     }
-    return null;
-	
+    
+	return null;
     }
     
     void setIpAdd(String ipAdd){

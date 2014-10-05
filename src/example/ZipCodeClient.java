@@ -52,7 +52,8 @@ public class ZipCodeClient {
 
 	// get (create) the stub out of ror.
  	ZipCodeServer zcs = (ZipCodeServer) ror.localise();
-
+ 	if(zcs == null)
+ 	    System.out.println("null zcs");
 	// reads the data and make a "local" zip code list.
 	// later this is sent to the server.
 	// again no error check!

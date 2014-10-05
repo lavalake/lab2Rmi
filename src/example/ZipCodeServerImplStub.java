@@ -1,4 +1,6 @@
-package server;
+package example;
+import server.RemoteObjectRef;
+import server.stubInterface;
 import utility.RemoteException;
 import comm.CommModule_Client;
 import comm.RMIMessage;
@@ -6,7 +8,7 @@ import comm.RMIMessage.msgType;
 import example.ZipCodeList;
 import example.ZipCodeServer;
 
-public class ZipCodeServerStub implements  ZipCodeServer, stubInterface{
+public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
 
     RemoteObjectRef ror;
     @Override
@@ -90,7 +92,11 @@ public class ZipCodeServerStub implements  ZipCodeServer, stubInterface{
         return null;
     }
     
-    public void setRor(RemoteObjectRef ref){
+    
+
+    @Override
+    public void setRor(RemoteObjectRef ref) {
+        // TODO Auto-generated method stub
         ror = ref;
     }
     
