@@ -1,5 +1,8 @@
 package example;
 import java.io.*;
+import server.RemoteInterface;
+
+import server.RemoteObjectRef;
 
 // in implementation, you do not have to extend this as in Java RMI. 
 // in your design, however, you can do so.
@@ -62,5 +65,17 @@ public class ZipCodeServerImpl
 		     "code: "+temp.ZipCode+"\n");        
 		temp = temp.next;                        
 	    }
+    }
+
+    @Override
+    public void setRor(RemoteObjectRef ref) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public RemoteObjectRef getRor() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

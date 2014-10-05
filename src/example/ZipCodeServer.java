@@ -1,5 +1,8 @@
 package example;
-public interface ZipCodeServer // extends YourRemote or whatever
+
+import server.RemoteInterface;
+
+public interface ZipCodeServer extends RemoteInterface // extends YourRemote or whatever
 {
     public void initialise(ZipCodeList newlist);
     public String find(String city);

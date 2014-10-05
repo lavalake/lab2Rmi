@@ -8,7 +8,7 @@ import comm.RMIMessage.msgType;
 import example.ZipCodeList;
 import example.ZipCodeServer;
 
-public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
+public class ZipCodeServerImplStub implements  ZipCodeServer{
 
     RemoteObjectRef ror;
     @Override
@@ -125,6 +125,12 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
     public void setRor(RemoteObjectRef ref) {
         // TODO Auto-generated method stub
         ror = ref;
+    }
+
+    @Override
+    public RemoteObjectRef getRor() {
+        // TODO Auto-generated method stub
+        return null;
     }
     
 }

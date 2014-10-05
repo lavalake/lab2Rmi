@@ -9,7 +9,7 @@ import utility.RemoteException;
 import example.ZipCodeRList;
 
 public class ZipCodeRListImplStub 
-    implements  ZipCodeRList, stubInterface
+    implements  ZipCodeRList
 {
     RemoteObjectRef ror;
     // finding the zip code only for that cell.
@@ -63,6 +63,7 @@ public class ZipCodeRListImplStub
     public ZipCodeRList add(String c, String z)
     {
         ZipCodeRList ret = null;
+        RemoteObjectRef ror=null;
         Object[] argv = {c,z};
         Class<?>[] argType = new Class<?>[argv.length];
         System.out.println("add");
@@ -71,7 +72,8 @@ public class ZipCodeRListImplStub
             System.out.println("argType "+i+":"+argType[i].toString());
         }
         try {
-            ret = (ZipCodeRList)invoke("add", argv, argType);
+            ror = (RemoteObjectRef)invoke("add", argv, argType);
+            ret = (ZipCodeRList) ror.localise();
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
