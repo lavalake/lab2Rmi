@@ -77,8 +77,8 @@ public class RMIMessage implements Serializable{
 	public Class<?>[] getArgsType() {
 		return argsType;
 	}
-	public void setArgsType(Class<?>[] argsType) {
-		this.argsType = argsType;
+	public void setArgsType(Class<?>[] argType) {
+		this.argsType = argType;
 	}
 	
 	

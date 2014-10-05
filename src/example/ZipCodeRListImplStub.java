@@ -1,12 +1,14 @@
-package server;
+package example;
 
 import comm.CommModule_Client;
 import comm.RMIMessage;
 import comm.RMIMessage.msgType;
+import server.RemoteObjectRef;
+import server.stubInterface;
 import utility.RemoteException;
 import example.ZipCodeRList;
 
-public class ZipCodeRListStub 
+public class ZipCodeRListImplStub 
     implements  ZipCodeRList, stubInterface
 {
     RemoteObjectRef ror;
@@ -32,7 +34,7 @@ public class ZipCodeRListStub
         ivkMessage.setType(msgType.INVOKE);
         ivkMessage.setMethodName(command);
         ivkMessage.setArgs(argv);
-        
+        ivkMessage.setRor(ror);
         CommModule_Client comm = new CommModule_Client(ror.IP_adr, ror.Port);
         
         comm.sendMsg(ivkMessage);

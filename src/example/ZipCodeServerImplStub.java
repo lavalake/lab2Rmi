@@ -16,8 +16,12 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
         // TODO Auto-generated method stub
         Object ret;
         Object[] argv = {newlist};
+        Class<?>[] argType = new Class<?>[argv.length];
+        for(int i=0;i<argv.length;i++){
+            argType[i] = argv[i].getClass();
+        }
         try {
-            invoke("initialize", argv);
+            invoke("initialize", argv, argType);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -30,8 +34,12 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
         // TODO Auto-generated method stub
         String ret = null;
         Object[] argv = {city};
+        Class<?>[] argType = new Class<?>[argv.length];
+        for(int i=0;i<argv.length;i++){
+            argType[i] = argv[i].getClass();
+        }
         try {
-            ret = (String)invoke("find", argv);
+            ret = (String)invoke("find", argv, argType);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -43,8 +51,9 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
     public ZipCodeList findAll() {
         // TODO Auto-generated method stub
         ZipCodeList ret = null;
+        Object[] argv = {};
         try {
-            ret = (ZipCodeList)invoke("findAll",null);
+            ret = (ZipCodeList)invoke("findAll",argv,null);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -56,8 +65,9 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
     public void printAll() {
         // TODO Auto-generated method stub
         ZipCodeList ret = null;
+        Object[] argv = {};
         try {
-            ret = (ZipCodeList)invoke("printAll",null);
+            ret = (ZipCodeList)invoke("printAll",argv,null);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -70,11 +80,13 @@ public class ZipCodeServerImplStub implements  ZipCodeServer, stubInterface{
         
     }
     
-    private Object invoke(String command, Object[] argv) throws RemoteException{
+    private Object invoke(String command, Object[] argv, Class<?>[] argType) throws RemoteException{
         RMIMessage ivkMessage = new RMIMessage();
         ivkMessage.setType(msgType.INVOKE);
         ivkMessage.setMethodName(command);
         ivkMessage.setArgs(argv);
+        ivkMessage.setRor(ror);
+        ivkMessage.setArgsType(argType);
         
         CommModule_Client comm = new CommModule_Client(ror.IP_adr, ror.Port);
         
