@@ -34,7 +34,7 @@ public class ZipCodeRListImplStub
         ivkMessage.setType(msgType.INVOKE);
         ivkMessage.setMethodName(command);
         ivkMessage.setArgs(argv);
-        
+        ivkMessage.setRor(ror);
         CommModule_Client comm = new CommModule_Client(ror.IP_adr, ror.Port);
         
         comm.sendMsg(ivkMessage);
