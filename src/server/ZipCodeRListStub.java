@@ -53,19 +53,36 @@ public class ZipCodeRListStub
     // this is essentially cons.
     public ZipCodeRList add(String c, String z)
     {
-    return null;
+        ZipCodeRList ret = null;
+        Object[] argv = {z};
+        try {
+            ret = (ZipCodeRList)invoke("add", argv);
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return ret;
+    
     }
 
     // this is essentially car.
     public ZipCodeRList next()
     {
-    return null;
+        ZipCodeRList ret = null;
+        
+        try {
+            ret = (ZipCodeRList)invoke("next", null);
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return ret;
     }
 
     @Override
     public void setRor(RemoteObjectRef ref) {
         // TODO Auto-generated method stub
-        
+        ror = ref;
     }
     
 }

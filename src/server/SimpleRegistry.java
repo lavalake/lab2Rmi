@@ -43,6 +43,7 @@ public class SimpleRegistry
 	    ror = rsp.getRor();
 	}
 	else if(rsp.getType() == msgType.EXCEPTION){
+	    System.out.println(rsp.getExceptionCause());
 	    throw(new RemoteException(rsp.getExceptionCause()));
 	}
 	
