@@ -164,10 +164,24 @@ public class RMI_Server {
 				//create the response
 				RMIMessage response = new RMIMessage();
 				
+				//if the response type is an class that implements remote reference interface, return the generated ror of the remote reference
+				if(returnValue.getClass().isInterface()){
+					//add the object to the table
+					int key_t = obtbl.add_obj(returnValue);		
+					
+					//ceate the ror from the class name
+					RemoteObjectRef ror = new RemoteObjectRef(host,port,key_t,returnValue.getClass().toString());
+					
+					//send the ror as the response
+					response.setType(msgType.RESPONSE);
+					response.setResult(ror);
+				}
+				else{
+				// if the response type is not an class that implements remote reference interface, return the response object directly
 				//marshall the response
 				response.setType(msgType.RESPONSE);
 				response.setResult(returnValue);
-				
+				}
 				//send the response
 				this.oos.writeObject(response);
 				
