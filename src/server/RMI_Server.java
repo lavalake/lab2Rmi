@@ -140,7 +140,7 @@ public class RMI_Server {
 				System.out.println(msg);
 				System.out.println(msg.getRor());
 				System.out.println(msg.getMethodName()+'\n');
-				
+				System.out.println(msg.getArgsType());
 				//un-marshall the message 
 				int key = msg.getRor().Obj_Key;
 				String methodName = msg.getMethodName();
@@ -164,8 +164,10 @@ public class RMI_Server {
 				//create the response
 				RMIMessage response = new RMIMessage();
 				
+				System.out.println("return class:"+returnValue.getClass());
+				
 				//if the response type is an class that implements remote reference interface, return the generated ror of the remote reference
-				if(returnValue.getClass().isInterface()){
+				if(returnValue instanceof RemoteInterface){
 					//add the object to the table
 					int key_t = obtbl.add_obj(returnValue);		
 					
