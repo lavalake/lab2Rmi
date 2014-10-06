@@ -86,11 +86,13 @@ public class ZipCodeRListImplStub
     public ZipCodeRList next()
     {
         ZipCodeRList ret = null;
-        
+        RemoteObjectRef ror;
         System.out.println("next");
         
         try {
-            ret = (ZipCodeRList)invoke("next", null,null);
+            ror = (RemoteObjectRef)invoke("next", null,null);
+            ret = (ZipCodeRList) ror.localise();
+            
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
