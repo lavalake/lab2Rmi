@@ -2,7 +2,9 @@ package example;
 
 import java.io.Serializable;
 
-public class ZipCodeList implements Serializable
+import server.RemoteInterface;
+
+public class ZipCodeList implements Serializable 
 {
     String city;
     String ZipCode;

@@ -2,6 +2,7 @@ package server;
 
 import java.io.Serializable;
 
+
 public class RemoteObjectRef implements Serializable
 {
     /**
@@ -47,7 +48,7 @@ public class RemoteObjectRef implements Serializable
         Class<?> stub = Class.forName(Remote_Object_Name+"Stub");
         try {
             Object stubObject = stub.newInstance();
-            ((stubInterface) stubObject).setRor(this);
+            ((RemoteInterface) stubObject).setRor(this);
             return stubObject;
         } catch (InstantiationException | IllegalAccessException e) {
             // TODO Auto-generated catch block

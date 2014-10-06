@@ -1,6 +1,5 @@
 package example;
 import server.RemoteObjectRef;
-import server.stubInterface;
 import utility.RemoteException;
 import comm.CommModule_Client;
 import comm.RMIMessage;
