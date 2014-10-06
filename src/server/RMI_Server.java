@@ -172,7 +172,7 @@ public class RMI_Server {
 					int key_t = obtbl.add_obj(returnValue);		
 					
 					//ceate the ror from the class name
-					RemoteObjectRef ror = new RemoteObjectRef(host,port,key_t,returnValue.getClass().toString());
+					RemoteObjectRef ror = new RemoteObjectRef(host,port,key_t,returnValue.getClass().getName());
 					
 					//send the ror as the response
 					response.setType(msgType.RESPONSE);
