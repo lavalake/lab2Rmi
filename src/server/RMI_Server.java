@@ -144,8 +144,10 @@ public class RMI_Server {
 				int key = msg.getRor().Obj_Key;
 				String methodName = msg.getMethodName();
 				Object [] args = msg.getArgs();
-				Class<?>[] argsType = msg.getArgsType();
-				
+				Class<?>[] argsType = null;
+				if(args.length !=0){
+					argsType = msg.getArgsType();
+				}
 				//get the method
 				Method m;
 				if(args.length == 1){
