@@ -164,6 +164,7 @@ public class RMI_Server {
 				//create the response
 				RMIMessage response = new RMIMessage();
 				
+				if(returnValue != null)
 				System.out.println("return class:"+returnValue.getClass());
 				
 				//if the response type is an class that implements remote reference interface, return the generated ror of the remote reference
