@@ -40,7 +40,7 @@ public class ZipCodeRListClient {
     try {
         ror = sr.lookup(serviceName);
     } catch (RemoteException e) {
-        // TODO Auto-generated catch block
+        
         e.printStackTrace();
     }
 

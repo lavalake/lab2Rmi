@@ -51,7 +51,7 @@ public class RemoteObjectRef implements Serializable
             ((RemoteInterface) stubObject).setRor(this);
             return stubObject;
         } catch (InstantiationException | IllegalAccessException e) {
-            // TODO Auto-generated catch block
+            
             e.printStackTrace();
         }
     }catch (ClassNotFoundException e) {

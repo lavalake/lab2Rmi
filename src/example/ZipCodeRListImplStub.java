@@ -26,7 +26,7 @@ public class ZipCodeRListImplStub
         try {
             ret = (String)invoke("find", argv, argType);
         } catch (RemoteException e) {
-            // TODO Auto-generated catch block
+            
             e.printStackTrace();
         }
         return ret;
@@ -34,7 +34,7 @@ public class ZipCodeRListImplStub
 
     private Object invoke(String command, Object[] argv, Class<?>[] argType) throws RemoteException {
         
-        // TODO Auto-generated method stub
+        
         RMIMessage ivkMessage = new RMIMessage();
         ivkMessage.setType(msgType.INVOKE);
         ivkMessage.setMethodName(command);
@@ -75,7 +75,7 @@ public class ZipCodeRListImplStub
             ror = (RemoteObjectRef)invoke("add", argv, argType);
             ret = (ZipCodeRList) ror.localise();
         } catch (RemoteException e) {
-            // TODO Auto-generated catch block
+            
             e.printStackTrace();
         }
         return ret;
@@ -94,7 +94,7 @@ public class ZipCodeRListImplStub
             ret = (ZipCodeRList) ror.localise();
             
         } catch (RemoteException e) {
-            // TODO Auto-generated catch block
+            
             e.printStackTrace();
         }
         return ret;
@@ -102,13 +102,13 @@ public class ZipCodeRListImplStub
 
     @Override
     public void setRor(RemoteObjectRef ref) {
-        // TODO Auto-generated method stub
+        
         ror = ref;
     }
 
     @Override
     public RemoteObjectRef getRor() {
-        // TODO Auto-generated method stub
+        
         return null;
     }
 

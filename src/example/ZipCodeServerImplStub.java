@@ -12,7 +12,7 @@ public class ZipCodeServerImplStub implements  ZipCodeServer{
     RemoteObjectRef ror;
     @Override
     public void initialise(ZipCodeList newlist) {
-        // TODO Auto-generated method stub
+        
         Object ret;
         Object[] argv = {newlist};
         Class<?>[] argType = new Class<?>[argv.length];
@@ -24,7 +24,7 @@ public class ZipCodeServerImplStub implements  ZipCodeServer{
         try {
             invoke("initialise", argv, argType);
         } catch (RemoteException e) {
-            // TODO Auto-generated catch block
+            
             e.printStackTrace();
         }
         
