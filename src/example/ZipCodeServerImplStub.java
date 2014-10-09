@@ -115,6 +115,7 @@ public class ZipCodeServerImplStub implements  ZipCodeServer{
             System.out.println("exception:"+rplMessage.getExceptionCause());
             throw(new RemoteException(rplMessage.getExceptionCause()));
         }
+        comm.CloseSocket();
         return null;
     }
     

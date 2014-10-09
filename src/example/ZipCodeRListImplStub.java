@@ -55,6 +55,8 @@ public class ZipCodeRListImplStub
             System.out.println(rplMessage.getExceptionCause());
             throw(new RemoteException(rplMessage.getExceptionCause()));
         }
+        
+        comm.CloseSocket();
         return null;
         
     }

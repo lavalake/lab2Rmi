@@ -23,6 +23,7 @@ import java.net.UnknownHostException;
 
 
 
+
 import comm.RMIMessage;
 import comm.RMIMessage.msgType;
 import client.LocateSimpleRegistry;
@@ -40,6 +41,7 @@ public class RMI_Server {
 		String registryHost = args[0];
 		int registryPort = Integer.parseInt(args[1]);
 		String initialClassName = args[2];
+		ServerSocket soc = null;
 		
 		//creat a RMI_SERVER instantce
 		RMI_Server rs = new RMI_Server();
@@ -54,7 +56,7 @@ public class RMI_Server {
 		
 		// create the sample object from the name
 		try {
-			Class initialclass = Class.forName(initialClassName);
+			Class<?> initialclass = Class.forName(initialClassName);
 			
 			//create the object
 			Object o  = initialclass.newInstance();
@@ -81,7 +83,7 @@ public class RMI_Server {
 			}
 
 			//create the socket
-			ServerSocket soc = new ServerSocket(port);
+			soc = new ServerSocket(port);
 			
 			//start to listen to the socket and deal with the remote method invocation
 			while(true){
@@ -105,6 +107,13 @@ public class RMI_Server {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally{
+			try {
+				soc.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -117,13 +126,13 @@ public class RMI_Server {
 		public dealRMIrequest(Socket soc){
 			this.soc = soc;
 			try {
-				this.ois = new ObjectInputStream(soc.getInputStream());
+				this.ois = new ObjectInputStream(this.soc.getInputStream());
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			try {
-				this.oos = new ObjectOutputStream(soc.getOutputStream());
+				this.oos = new ObjectOutputStream(this.soc.getOutputStream());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -136,11 +145,7 @@ public class RMI_Server {
 			try {
 				//get the RMI message
 				RMIMessage msg = (RMIMessage) this.ois.readObject();
-				
-				System.out.println(msg);
-				System.out.println(msg.getRor());
-				System.out.println(msg.getMethodName()+'\n');
-				System.out.println(msg.getArgsType());
+			
 				//un-marshall the message 
 				int key = msg.getRor().Obj_Key;
 				String methodName = msg.getMethodName();
@@ -163,10 +168,7 @@ public class RMI_Server {
 				
 				//create the response
 				RMIMessage response = new RMIMessage();
-				
-				if(returnValue != null)
-				System.out.println("return class:"+returnValue.getClass());
-				
+						
 				//if the response type is an class that implements remote reference interface, return the generated ror of the remote reference
 				if(returnValue instanceof RemoteInterface){
 					//add the object to the table
@@ -259,6 +261,18 @@ public class RMI_Server {
 				}
 			}
 			
+			try {
+				this.ois.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				this.oos.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}

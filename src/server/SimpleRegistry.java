@@ -1,6 +1,11 @@
+/*
+ * This class combines the RMI dispatcher with the server communication module together.
+ * 
+ *  Author: Yifan Li
+ *  Date: 10/8/2014
+ */
+
 package server;
-import java.util.*;
-import java.net.*;
 import java.io.*;
 
 import utility.RemoteException;
