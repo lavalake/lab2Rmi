@@ -1,7 +1,4 @@
 package example;
-import java.io.*;
-import server.RemoteInterface;
-
 import server.RemoteObjectRef;
 
 // in implementation, you do not have to extend this as in Java RMI. 
