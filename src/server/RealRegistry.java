@@ -22,10 +22,11 @@ public class RealRegistry {
 		//create the serviceList
 		HashMap<String,RemoteObjectRef> serviceList = new HashMap<String,RemoteObjectRef>();
 		
+		ServerSocket soc =null; 
 		
 		try {
 			//ceate the server socket
-			ServerSocket soc = new ServerSocket(port);
+			soc = new ServerSocket(port);
 			
 			//listen to the socket
 			while(true){
@@ -60,13 +61,19 @@ public class RealRegistry {
 				}
 				client.close();
 			}
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally{
+			try {
+				soc.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		

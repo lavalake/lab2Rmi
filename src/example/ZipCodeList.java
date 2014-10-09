@@ -2,8 +2,6 @@ package example;
 
 import java.io.Serializable;
 
-import server.RemoteInterface;
-
 public class ZipCodeList implements Serializable 
 {
     /**
