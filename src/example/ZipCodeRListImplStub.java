@@ -111,7 +111,7 @@ public class ZipCodeRListImplStub
     @Override
     public RemoteObjectRef getRor() {
         
-        return null;
+        return ror;
     }
 
     
