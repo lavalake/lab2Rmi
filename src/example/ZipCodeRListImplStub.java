@@ -68,10 +68,10 @@ public class ZipCodeRListImplStub
         RemoteObjectRef ror=null;
         Object[] argv = {c,z};
         Class<?>[] argType = new Class<?>[argv.length];
-        System.out.println("add");
+        
         for(int i=0;i<argv.length;i++){
             argType[i] = argv[i].getClass();
-            System.out.println("argType "+i+":"+argType[i].toString());
+            
         }
         try {
             ror = (RemoteObjectRef)invoke("add", argv, argType);

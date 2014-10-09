@@ -41,7 +41,8 @@ public class ZipCodeRListClient {
         ror = sr.lookup(serviceName);
     } catch (RemoteException e) {
         
-        e.printStackTrace();
+        System.out.println("lookup service failed"+e.getMessage());
+        in.close();
         return;
     }
 
