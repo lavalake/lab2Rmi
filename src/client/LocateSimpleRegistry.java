@@ -1,7 +1,4 @@
 package client;
-import java.net.*;
-import java.io.*;
-
 import server.SimpleRegistry;
 
 public class LocateSimpleRegistry 

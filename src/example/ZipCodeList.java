@@ -6,7 +6,11 @@ import server.RemoteInterface;
 
 public class ZipCodeList implements Serializable 
 {
-    String city;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String city;
     String ZipCode;
     ZipCodeList next;
 
