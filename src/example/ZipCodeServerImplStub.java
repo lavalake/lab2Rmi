@@ -13,7 +13,7 @@ public class ZipCodeServerImplStub implements  ZipCodeServer{
     @Override
     public void initialise(ZipCodeList newlist) {
         
-        Object ret;
+        
         Object[] argv = {newlist};
         Class<?>[] argType = new Class<?>[argv.length];
         System.out.println("initialise");
@@ -74,19 +74,19 @@ public class ZipCodeServerImplStub implements  ZipCodeServer{
     /*will print at remote site, not locally*/
     public void printAll() {
         // TODO Auto-generated method stub
-        ZipCodeList ret = null;
+        
         Object[] argv = {};
         Class<?>[] argType = new Class<?>[argv.length];
         System.out.println("printall");
         for(int i=0;i<argv.length;i++){
             argType[i] = argv[i].getClass();
-            System.out.println("argType "+i+":"+argType[i].toString());
+            
         }
         try {
             invoke("printAll",null,null);
         } catch (RemoteException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("invoke printAll failed: "+e.getMessage());
         }
         
         
@@ -130,7 +130,7 @@ public class ZipCodeServerImplStub implements  ZipCodeServer{
     @Override
     public RemoteObjectRef getRor() {
         // TODO Auto-generated method stub
-        return null;
+        return ror;
     }
     
 }

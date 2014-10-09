@@ -78,7 +78,8 @@ public class ZipCodeRListImplStub
             ret = (ZipCodeRList) ror.localise();
         } catch (RemoteException e) {
             
-            e.printStackTrace();
+            System.out.println("invoke add failed: "+e.getMessage());
+            
         }
         return ret;
     
@@ -97,7 +98,7 @@ public class ZipCodeRListImplStub
             
         } catch (RemoteException e) {
             
-            e.printStackTrace();
+            System.out.println("invoke next failed: "+e.getMessage());
         }
         return ret;
     }

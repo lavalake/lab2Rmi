@@ -84,6 +84,11 @@ public class ZipCodeRListClient {
 	while (temp !=null)            
 	    {
 		rl=rl.add(temp.city, temp.ZipCode);
+		if(rl == null){
+		    System.out.println("get null stub");
+		    in.close();
+		    return;
+		}
 		temp = temp.next;                        
 	    }
 	System.out.println("add tested.");
@@ -102,6 +107,11 @@ public class ZipCodeRListClient {
 				   "code: "+res);
 		temp=temp.next;
 		rtemp = rtemp.next();
+		if(rtemp == null){
+		    System.out.println("get null stub in next()");
+		    in.close();
+		    return;
+		}
 	    }  
 	in.close();
     }
