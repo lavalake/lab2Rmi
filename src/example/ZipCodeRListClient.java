@@ -42,6 +42,7 @@ public class ZipCodeRListClient {
     } catch (RemoteException e) {
         
         e.printStackTrace();
+        return;
     }
 
 	// get (create) the stub out of ror.
@@ -100,7 +101,8 @@ public class ZipCodeRListClient {
 				   "code: "+res);
 		temp=temp.next;
 		rtemp = rtemp.next();
-	    }        		
+	    }  
+	in.close();
     }
 }
 

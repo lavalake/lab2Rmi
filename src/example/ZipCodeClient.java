@@ -35,7 +35,8 @@ public class ZipCodeClient {
 	try{
 	    in = new BufferedReader(new FileReader(args[3]));
 	}catch(FileNotFoundException e){
-	    e.printStackTrace();
+	    System.out.println("file "+args[3]+"not exist");
+	    return;
 	    
 	}
 
@@ -48,6 +49,7 @@ public class ZipCodeClient {
     } catch (RemoteException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
+        return;
     }
 
 	// get (create) the stub out of ror.
@@ -114,7 +116,11 @@ public class ZipCodeClient {
 	System.out.println("\n We test the remote site printing.");
 	// here is a test.
 	zcs.printAll();
+	if(in != null)
+	    in.close();
     }
+    
+        
 }
 
 	    

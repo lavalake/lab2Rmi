@@ -18,16 +18,16 @@ public class ZipCodeRListImplStub
         String ret = null;
         Object[] argv = {c};
         Class<?>[] argType = new Class<?>[argv.length];
-        System.out.println("find");
+        
         for(int i=0;i<argv.length;i++){
             argType[i] = argv[i].getClass();
-            System.out.println("argType "+i+":"+argType[i].toString());
+            
         }
         try {
             ret = (String)invoke("find", argv, argType);
         } catch (RemoteException e) {
             
-            e.printStackTrace();
+            return null;
         }
         return ret;
     }
