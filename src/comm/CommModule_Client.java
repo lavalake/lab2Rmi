@@ -28,7 +28,14 @@ public class CommModule_Client{
 			e.printStackTrace();
 		}
     }
-
+    public void CloseSocket(){
+    	try {
+			socket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 	public String getIpAdr() {
 		return ipAdr;
 	}
@@ -55,7 +62,7 @@ public class CommModule_Client{
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(this.socket.getOutputStream());
 			oos.writeObject(msg);
-
+			oos.close();
 		} catch (IOException e) {
 			System.out.print("object output stream failure!");
 			e.printStackTrace();
@@ -74,7 +81,7 @@ public class CommModule_Client{
 		try {
 			ois = new ObjectInputStream(this.socket.getInputStream());
 			response = (RMIMessage)ois.readObject();
-			
+			ois.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
