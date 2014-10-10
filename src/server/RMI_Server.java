@@ -109,7 +109,9 @@ public class RMI_Server {
 			e.printStackTrace();
 		} finally{
 			try {
+			    
 				soc.close();
+				System.out.println("exit, close");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

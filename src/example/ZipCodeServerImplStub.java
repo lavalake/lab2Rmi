@@ -19,7 +19,7 @@ public class ZipCodeServerImplStub implements  ZipCodeServer{
         System.out.println("initialise");
         for(int i=0;i<argv.length;i++){
             argType[i] = argv[i].getClass();
-            System.out.println("argType "+i+":"+argType[i].toString());
+            
         }
         try {
             invoke("initialise", argv, argType);
@@ -36,10 +36,10 @@ public class ZipCodeServerImplStub implements  ZipCodeServer{
         String ret = null;
         Object[] argv = {city};
         Class<?>[] argType = new Class<?>[argv.length];
-        System.out.println("find");
+        
         for(int i=0;i<argv.length;i++){
             argType[i] = argv[i].getClass();
-            System.out.println("argType "+i+":"+argType[i].toString());
+            
         }
         try {
             ret = (String)invoke("find", argv, argType);
@@ -56,10 +56,10 @@ public class ZipCodeServerImplStub implements  ZipCodeServer{
         ZipCodeList ret = null;
         Object[] argv = {};
         Class<?>[] argType = new Class<?>[argv.length];
-        System.out.println("findall");
+        
         for(int i=0;i<argv.length;i++){
             argType[i] = argv[i].getClass();
-            System.out.println("argType "+i+":"+argType[i].toString());
+            
         }
         try {
             ret = (ZipCodeList)invoke("findAll",null,null);
@@ -77,7 +77,7 @@ public class ZipCodeServerImplStub implements  ZipCodeServer{
         
         Object[] argv = {};
         Class<?>[] argType = new Class<?>[argv.length];
-        System.out.println("printall");
+        
         for(int i=0;i<argv.length;i++){
             argType[i] = argv[i].getClass();
             
